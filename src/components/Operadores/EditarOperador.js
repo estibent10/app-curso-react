@@ -9,47 +9,42 @@ import {
 
 import { AvField, AvForm } from "availity-reactstrap-validation";
 
-const EditarCobrador = (props) => {
+const EditarOperador = (props) => {
 
-    const [ModalEditarCobrador, setModalEditarCobrador] = useState(false);
+    const [ModalEditarOperador, setModalEditarOperador] = useState(false);
 
-    const ToggleModalEditarCobrador = () => {
+    const ToggleModalEditarOperador = () => {
         
-        setModalEditarCobrador(!ModalEditarCobrador);
-        
+        setModalEditarOperador(!ModalEditarOperador);       
+
     };
 
-    const HandleValidEventSubmitEditarCobrador = (event, values) => {
+    const HandleValidEventSubmitEditarOperador = (event, values) => {
 
         values.TipoIdentificacion = Number(values.TipoIdentificacion);
-        
-        values.TipoIdentificacionOperador = Number(values.TipoIdentificacionOperador);
 
-        props.HandleEditarCobrador(event, values);
+        props.HandleEditarOperador(event, values);
 
-        console.log("values"); 
-        console.log(values); 
-
-        ToggleModalEditarCobrador();
+        ToggleModalEditarOperador();
 
     };
 
     return (
         <>
-            <button type="button" className="btn btn-light btn-sm" title="Editar" onClick={ToggleModalEditarCobrador}>
+            <button type="button" className="btn btn-light btn-sm" title="Editar" onClick={ToggleModalEditarOperador}>
                 <i className="fa fa-pencil-alt"></i>
             </button>
 
             <Modal
-                isOpen={ModalEditarCobrador}
-                toggle={ToggleModalEditarCobrador}            
+                isOpen={ModalEditarOperador}
+                toggle={ToggleModalEditarOperador}            
             >
-                <ModalHeader toggle={ToggleModalEditarCobrador} tag="h4">
-                    Editar Cobrador
+                <ModalHeader toggle={ToggleModalEditarOperador} tag="h4">
+                    Editar Operador
                 </ModalHeader>
                 <ModalBody>
                     <AvForm
-                        onValidSubmit={HandleValidEventSubmitEditarCobrador}
+                        onValidSubmit={HandleValidEventSubmitEditarOperador}
                     >
                         <Row form>
 
@@ -64,7 +59,7 @@ const EditarCobrador = (props) => {
                                         pattern: { value: '^[1-2]+$' },
 
                                     }}
-                                    value={props.cobrador.TipoIdentificacion}
+                                    value={props.operador.TipoIdentificacion}
                                     disabled
                                 >
                                     <option value="0"></option>
@@ -83,7 +78,7 @@ const EditarCobrador = (props) => {
                                         required: { value: true },
                                         maxLength: { value: 22, errorMessage: 'Ingrese máximo 22 caracteres' }
                                     }}
-                                    value={props.cobrador.Identificacion}
+                                    value={props.operador.Identificacion}
                                     disabled
                                 />
                             </Col>
@@ -98,7 +93,7 @@ const EditarCobrador = (props) => {
                                         required: { value: true },
                                         maxLength: { value: 100, errorMessage: 'Ingrese máximo 150 caracteres' }
                                     }}
-                                    value={props.cobrador.Nombre}
+                                    value={props.operador.Nombre}
                                 />
                             </Col>
 
@@ -112,46 +107,11 @@ const EditarCobrador = (props) => {
                                         required: { value: true },
                                         maxLength: { value: 50, errorMessage: 'Ingrese máximo 150 caracteres' }
                                     }}
-                                    value={props.cobrador.Email}
+                                    value={props.operador.Email}
                                 />
                             </Col>
 
                             <Col className="col-12 mb-3">
-                                <AvField
-                                    name="TipoIdentificacionOperador"
-                                    label="Tipo De Identificación Operador"
-                                    type="select"
-                                    errorMessage="Ingrese un tipo de identificación válido"
-                                    validate={{
-                                        required: { value: true },
-                                        pattern: { value: '^[1-2]+$' },
-
-                                    }}
-                                    value={props.cobrador.TipoIdentificacionOperador}
-                                    
-                                >
-                                    <option value="0"></option>
-                                    <option value="1">Persona Física</option>
-                                    <option value="2">Persona Jurídica</option>
-                                </AvField>
-                            </Col>
-
-                            <Col className="col-12 mb-3">
-                                <AvField
-                                    name="IdentificacionOperador"
-                                    label="Identificación Operador"
-                                    type="text"
-                                    errorMessage="Ingrese una identificación válida"
-                                    validate={{
-                                        required: { value: true },
-                                        maxLength: { value: 22, errorMessage: 'Ingrese máximo 22 caracteres' }
-                                    }}
-                                    value={props.cobrador.IdentificacionOperador}
-                                    
-                                />
-                            </Col>
-
-                            {/* <Col className="col-12 mb-3">
                                 <AvField
                                     name="CuentaIBAN"
                                     label="Cuenta IBAN"
@@ -161,9 +121,9 @@ const EditarCobrador = (props) => {
                                         required: { value: true },
                                         maxLength: { value: 22, errorMessage: 'Ingrese máximo 50 caracteres' }
                                     }}
-                                    value={props.cobrador.CuentaIBAN}
+                                    value={props.operador.CuentaIBAN}
                                 />
-                            </Col> */}
+                            </Col>
                         </Row>
                         <Row>
                             <Col>
@@ -171,7 +131,7 @@ const EditarCobrador = (props) => {
                                     <button
                                         type="button"
                                         className="btn btn-light me-2"
-                                        onClick={ToggleModalEditarCobrador}
+                                        onClick={ToggleModalEditarOperador}
                                     >
                                         Cerrar
                                     </button>
@@ -193,4 +153,4 @@ const EditarCobrador = (props) => {
     )
 }
 
-export default EditarCobrador;
+export default EditarOperador;
